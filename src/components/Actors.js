@@ -2,40 +2,20 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
 import ModalCard from "../UI/ModalCard";
+import GetData from "../hooks/getData";
 
 
 const Actors = () => {
 
 
-    const [actors, setActors] = useState(null);
-    useEffect(()=> {
-        getActors()
-    }, []);
-    const getActors = () =>  {
-        axios({
-            method: 'GET',
-            url: '/actors',
-        }).then((response)=> {
-            const data = response.data
-            console.log(data);
-            setActors(data)
-        }).catch((error) => {
-            if(error.response){
-                console.log(error.response);
-                console.log(error.response.headers);
-                console.log(error.response.status);
-            }
-        });
-
-    };
-
+    const data =  GetData('/Actors')
 
     return(
 
         <Container>
             <Row>
                 <Col lg={true}/>
-                {actors && actors.map(actor=> <ModalCard
+                {data && data.map(actor=> <ModalCard
                     key={actor.id}
                     header={actor.FullName}
                     body={actor.bio}
