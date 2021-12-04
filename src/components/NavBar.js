@@ -1,80 +1,52 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css"
-import {  Container, Nav, Navbar,} from "react-bootstrap";
-import logo from './logo.jpg'
+
+import { Button } from "../UI/Button";
 
 
 
 const NavBar = () => {
-    const [navLinkOpen, setNavLinkOpen] = useState(false);
+    const [click, setClick] = useState(false);
+    const [button, setButton] = useState(true);
 
-    const handlerNavLinksToggle = () => {
-        setNavLinkOpen(!navLinkOpen);
-    };
-    const renderClasses = () => {
-        let classes = "navlinks"
+    const handleClick = () => setClick(!click);
+    const closeMenu = () => setClick(false);
 
-
-        if(navLinkOpen) {
-            classes = classes + " active"
+    const showButton = () => {
+        if (window.innerWidth <= 960) {
+            setButton(false);
+        } else {
+            setButton(true);
         }
-        return classes;
     };
 
-
-
+    useEffect(() => {
+        showButton();
+    }, []);
+    window.addEventListener('resize',showButton)
 
     return (
-        <nav>
-            <div className='logo'>
-                <img src={logo} allt='movie logo'/>
-                {/*<i className="fas fa-film"></i>*/}
+        <>
+        <nav className="navbar">
+            <div className='navbar-container'>
+                <Link to="/" className='navbar-logo' id={"movies"} onClick={closeMenu}>Movie & Chill< i className="fas fa-video"></i></Link>
+                <div className='menu-icon' onClick={handleClick}>
+                    <i className={click ? 'fas fa-times': 'fas fa-bars'}></i>
+                </div>
+                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
 
-               {/* <h4>Movies</h4>*/}
+                    <li className='nav-item'><Link to="/movies" className='nav-links' id={"movies"} onClick={closeMenu}>Movies</Link></li>
+                    <li className='nav-item'><Link to="/actors" className='nav-links' id={"actors"} onClick={closeMenu}>Actors</Link></li>
+                  {/*  <li className='nav-item'><Link to="/movieform" className='nav-links' id={"movieform"} onClick={closeMenu}>MovieForm</Link></li>*/}
+                    <li className='nav-item'><Link to="/producers" className='nav-links' id={"producers"} onClick={closeMenu}>Producers</Link></li>
+                    <li className='nav-item'><Link to="/sign-up" className='nav-links-mobile' id={"sign-up"} onClick={closeMenu}>Sign Up</Link></li>
+                </ul>
+                {button && <Button buttonStyle='btn--outline'>Sign Up</Button> }
             </div>
-            <ul className={renderClasses()} >
-                <li className='link'><Link to="/"  >Home</Link></li>
-                <li className='link'> <Link to="/movies" onClick={handlerNavLinksToggle}>Movies</Link></li>
-                <li className='link'><Link to="/actors" onClick={handlerNavLinksToggle}>Actors</Link></li>
-                <li className='link'><Link to="/movieform" onClick={handlerNavLinksToggle}>MovieForm</Link></li>
-                <li className='link'> <Link to="/producers" onClick={handlerNavLinksToggle}>Producers</Link></li>
-            </ul>
-
-
-            <div  onClick={handlerNavLinksToggle} className='hamburger-toggle'>
-                <i className="fas fa-bars"></i>
-            </div>
-
 
         </nav>
-        /*  <div className="navbar">
-              <h1>Navbar</h1>
-              <ul>
-                  <li><NavLink exact to="/">Movie</NavLink></li>
-                  <li><NavLink to="/actors">Actors</NavLink></li>
-                  <li><NavLink to="/cinemas">Cinemas</NavLink></li>
-                  <li><NavLink to="/producers">Producers</NavLink></li>
-
-              </ul>
-          </div>
-      )*/
-
-        /*<Navbar collapseOnSelect    bg="dark" variant="dark" expand="sm">
-            <Container>
-
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="ms-auto">
-                    <Link to="/movies" className='nav-link' >Movies</Link>
-                    <Link to="/actors" className='nav-link'>Actors</Link>
-                    <Link to="/producers" className='nav-link'>Producers</Link>
-
-                </Nav>
-                </Navbar.Collapse>
-
-            </Container>
-        </Navbar>*/
+        </>
 
     )
 }

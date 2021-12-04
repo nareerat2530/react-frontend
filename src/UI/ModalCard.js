@@ -1,15 +1,10 @@
-import './Card.css'
-import Card from "react-bootstrap/Card";
-import {  Col, Row } from 'react-bootstrap'
+import './Card.scss'
 import React from "react";
-import Button from '../UI/Button'
-
-
 
 const ModalCard = (props) => {
     return (
 
-        <React.Fragment>
+        /*<React.Fragment>
             <Card className='card'>
             <Card.Img variant="top" src={props.imageUrl}  class="rounded mx-auto d-block" alt="..." style={{width: '100%', height:'auto'}}/>
             <Card.Body>
@@ -22,11 +17,24 @@ const ModalCard = (props) => {
             </Card.Body>
         </Card>
 
-        </React.Fragment>
+        </React.Fragment>*/
+
+        <div className='card'>
 
 
+            <div className='class__body'>
 
-   
-    );
+
+                <img src={props.imageUrl} className='card__image'/>
+                <h2 className='card__title'>{props.header}</h2>
+                <p className='card__description'>{props.body}</p>
+                <p className='card__price'>{props.footer}</p>
+                <button className='card__btn'>View Movie</button>
+
+        </div>
+</div>
+            );
+
+
 }
 export default ModalCard

@@ -4,16 +4,15 @@ import NavBar from "./components/NavBar";
 import Producers from "./components/Producers"
 import { BrowserRouter, HashRouter, Route, Router, Routes } from 'react-router-dom';
 import Actors from "./components/Actors";
-
-
 import Movie from "./components/Movie";
 import Homepage from "./components/Homepage";
 import MovieForm from "./components/MovieForm"
 
 
+
 function App() {
     return (
-        <div className='content'>
+        <div>
 
         <HashRouter>
                 <NavBar/>

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,300&display=swap');
+
+*,*::before,
+*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Bittter, sans-serif;
+
+    background: #242222;
+}
+.wrapper{
+
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap:15rem;
+    justify-content: center;
+    margin: 2rem;
+}
+.card {
+    box-shadow: 0 0 10px 5px $clr-gray300;
+    border-radius: $radius;
+    min-width: 16rem;
+    display: flex;
+    background-color: grey;
+
+&__img {
+     width: 14rem;
+     height: 16rem;
+     object-fit: cover;
+ }
+
+&__body {
+     margin:0;
+     flex-grow: 1;
+ }
+&__title {
+     line-height: 1.4rem;
+     margin-bottom: 0.5rem;
+ }
+&__description {
+     line-height: 1.2rem;
+ }
+&__price {
+     font-size: 1.4rem;
+     margin-top: 0.6rem;
+
+&::before {
+     content: "$";
+     font-size: 1rem;
+     position: relative;
+     top: -0.3rem;
+     padding-right: 0.1rem;
+ }
+}
+
+&__btn {
+     border: none;
+     border-top: 1px solid $clr-gray300;
+     background-color: transparent;
+     font-family: inherit;
+     font-size: 1rem;
+     font-weight: bold;
+     color: inherit;
+     width: 100%;
+     padding-top: 1rem;
+     margin-top: 1rem;
+     cursor: pointer;
+
+&:hover {
+     color: $clr-primary;
+ }
+}
+}
+
