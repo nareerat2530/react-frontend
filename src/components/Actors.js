@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Col, Container, Row } from "react-bootstrap";
 import ModalCard from "../UI/ModalCard";
 import GetData from "../hooks/getData";
 
@@ -12,19 +10,14 @@ const Actors = () => {
 
     return(
 
-        <Container>
-            <Row>
-                <Col lg={true}/>
+        <div className='wrapper'>
                 {data && data.map(actor=> <ModalCard
                     key={actor.id}
                     header={actor.FullName}
                     body={actor.bio}
                     imageUrl={actor.imageURL}
                     />)}
-            </Row>
-        </Container>
-
-
+        </div>
 
     )
 }

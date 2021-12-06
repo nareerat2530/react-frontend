@@ -6,7 +6,7 @@ import useForm from '../hooks/useForm';
 
 
 
-const  MovieForm = () =>  {
+const  AddMovie = () =>  {
     const {handleChange, values,handleSubmit} = useForm()
 
 
@@ -154,6 +154,6 @@ const  MovieForm = () =>  {
 
 };
 
-export default MovieForm
+export default AddMovie;
 
 

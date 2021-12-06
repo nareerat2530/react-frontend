@@ -1,7 +1,34 @@
-.movie-card{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 90px;
 }
+.btn btn-primary {
 
-
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 90px;
+}
+.btn-rounded{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 90px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.btn-outline

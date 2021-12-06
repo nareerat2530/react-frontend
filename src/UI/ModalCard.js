@@ -22,16 +22,13 @@ const ModalCard = (props) => {
         <div className='card'>
 
 
-            <div className='class__body'>
-
-
-                <img src={props.imageUrl} className='card__image'/>
+            <img src={props.imageUrl} className='card__image'/>
                 <h2 className='card__title'>{props.header}</h2>
                 <p className='card__description'>{props.body}</p>
                 <p className='card__price'>{props.footer}</p>
                 <button className='card__btn'>View Movie</button>
 
-        </div>
+
 </div>
             );
 
