@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+
 import ModalCard from "../UI/ModalCard";
 import GetData from "../hooks/getData";
 import DeleteData from "../hooks/DeleteData";
 
-import { Button } from "react-bootstrap";
+
 
 
 

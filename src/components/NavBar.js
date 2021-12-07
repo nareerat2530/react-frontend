@@ -25,11 +25,11 @@ const NavBar = () => {
     useEffect(() => {
         showButton();
         window.addEventListener('resize', showButton);
-        return
+       return
         {
-            window.removeEventListener('resize', showButton)
-        }
-    }, []);
+       window.removeEventListener('resize',showButton)
+       }
+    },[]);
 
     return (
         <>
@@ -60,7 +60,7 @@ const NavBar = () => {
                     <li className='nav-item'><Link to="/producers" className='nav-links' id={"producers"} onClick={closeMobileMenu}>Producers</Link></li>
                     <li className='nav-item'><Link to="/sign-up" className='nav-links-mobile' id={"sign-up"} onClick={closeMobileMenu}>Sign Up</Link></li>
                 </ul>
-               <Button buttonStyle='btn--outline'>Add Movie</Button>
+                {button &&  <Button buttonStyle='btn--outline'>Add Movie</Button>}
             </div>
 
         </nav>

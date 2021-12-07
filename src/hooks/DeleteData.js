@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";*/
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 const DeleteData = (props) => {
@@ -14,7 +15,9 @@ const DeleteData = (props) => {
             setData(data);
         });
 
-    },[])
+    },[props])
+    return data;
+
 
 }
 export default DeleteData;

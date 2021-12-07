@@ -1,4 +1,7 @@
+
+/*
 import {useState, useEffect} from "react";
+
 
 
 
@@ -27,6 +30,7 @@ const useForm = () => {
     const handleSubmit = e => {
         e.preventDefault();
         setErrors()
+        setIsSubmitting(true)
     };
     useEffect(
         () => {
@@ -39,3 +43,4 @@ const useForm = () => {
     return {handleChange,values, handleSubmit,errors};
 };
 export default useForm;
+*/

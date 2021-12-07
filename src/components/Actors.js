@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+
 import ModalCard from "../UI/ModalCard";
 import GetData from "../hooks/getData";
 

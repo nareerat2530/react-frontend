@@ -6,9 +6,9 @@ import "../App.css";
 const HeroSection = () => {
   return (
       <div className='hero-container'>
-      <video autoPlay loop muted>
+     {/* <video autoPlay loop muted>
         <source src="/public/video-1.mp4" type="video/mp4" />
-      </video>
+      </video>*/}
       <h1>Welcome to Movie World</h1>
           <div className='hero-btns'>
               <Button
@@ -20,7 +20,7 @@ const HeroSection = () => {
                   className='btns'
                   buttonStyle='btn--primary'
                   buttonSize='btn--large'
-                  onClick={console.log('hey')}>WATCH TRAILER<i className='far fa-play-circle' /></Button>
+                  >WATCH TRAILER<i className='far fa-play-circle' /></Button>
           </div>
       </div>
   );
