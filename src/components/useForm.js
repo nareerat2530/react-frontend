@@ -1,6 +1,9 @@
 import {useState} from "react";
 import axios from "axios";
 import Validate from "./Validation";
+import useInput from "./ResetForm";
+
+
 
 
 const useForm = () => {
@@ -8,7 +11,10 @@ const useForm = () => {
     const [errors,setErrors] = useState({});
 
 
-    const [values,setValues] = useState({
+
+
+
+   /*const [values,setValues] = useState({
         name:'',
         description:'',
         price:'',
@@ -18,24 +24,21 @@ const useForm = () => {
         endDate:'',
         producerId:'',
         cinemaId:'',
-    });
+    });*/
 
 
-    const handleChange =(event) => {
+
+  /* const handleChange =(event) => {
         const {name,value} = event.target
         setValues({
             ...values, [name] : value
         })
-    };
+    };*/
+
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        e.target.reset()
-
-
-
-
 
         const {
 
@@ -78,7 +81,7 @@ const useForm = () => {
 
         }, 1000);
 
-       setErrors(Validate(values))
+       setErrors(Validate)
 
     }
 
@@ -87,7 +90,7 @@ const useForm = () => {
 
 
 
-    return { handleChange, handleSubmit, values, errors };
+    return { handleSubmit, errors ,useInput};
     };
 
 
