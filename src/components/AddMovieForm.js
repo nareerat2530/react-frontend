@@ -1,15 +1,20 @@
 import Select from 'react-select'
 import './MovieForm.css'
-import GetData from "../hooks/getData";
+import GetData from "../Services/getData";
 import useForm from "./useForm";
 import Validate from "./Validation";
 import React from "react";
 import useInput from "./ResetForm";
 
+import handleSubmit from "../Services/PostData";
+import MovieService from "../Services/movie-service";
+
 
 
 const  AddMovieForm2 =  () => {
-    const {handleChange,values,errors, handleSubmit} = useForm(Validate)
+
+
+  /* const {errors} = useForm(Validate)*/
 
     const {value: name, bind: bindName, reset: resetName} = useInput('')
     const {value: description, bind: bindDescription, reset: resetDescription} = useInput('')
@@ -17,9 +22,7 @@ const  AddMovieForm2 =  () => {
     const {value: imageUrl, bind: bindImageUrl, reset: resetImageUrl} = useInput('')
     const {value: startDate, bind: bindStartDate, reset: resetStartDate} = useInput('')
     const {value: endDate, bind: bindEndDate, reset: resetEndDate} = useInput('')
-    const {value: movieCategory, bind: bindMovieCategory, reset: resetMovieCategory} = useInput('')
-    const {value: cinemaId, bind: bindCinemaId, reset: resetCinemaId} = useInput('')
-    const {value: producerId, bind: bindProducerId, reset: resetProducerId} = useInput('')
+
 
 
 
@@ -27,16 +30,26 @@ const  AddMovieForm2 =  () => {
         resetName();
         resetPrice();
         resetImageUrl();
-        resetCinemaId();
-        resetProducerId();
         resetStartDate();
         resetEndDate();
-        resetMovieCategory();
         resetDescription();
 
     }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let movie =   {name,
+            description,
+            price,
+            imageUrl,
+            startDate,
+            endDate
+        }
+        MovieService.AddMovie(movie);
+        console.log(movie);
+        resetForm();
 
-    const producerOptions = [];
+    }
+        const producerOptions = [];
     const cinemaOptions = [];
 
 
@@ -70,7 +83,7 @@ const producerData =  GetData('/Producer');
                         name='name'
                         placeholder='Enter Name'
                     />
-                    {errors.name && <p>{errors.name}</p>}
+                  {/*  {errors.name && <p>{errors.name}</p>}*/}
 
 
 
@@ -87,7 +100,7 @@ const producerData =  GetData('/Producer');
 
 
                     />
-                    {errors.description && <p>{errors.description}</p>}
+                   {/* {errors.description && <p>{errors.description}</p>}*/}
                 </div>
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Price</label>
@@ -102,20 +115,20 @@ const producerData =  GetData('/Producer');
 
 
                     />
-                    {errors.price && <p>{errors.price}</p>}
+                    {/*{errors.price && <p>{errors.price}</p>}*/}
                 </div>
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>ImageUrl</label>
                     <input
                         className='form-input'
                         {...bindImageUrl}
-                        type='text'
+                        type='url'
                         name='imageUrl'
                         placeholder='Enter Image url'
 
 
                     />
-                    {errors.imageUrl && <p>{errors.imageUrl}</p>}
+                   {/* {errors.imageUrl && <p>{errors.imageUrl}</p>}*/}
                 </div>
 
 
@@ -131,7 +144,7 @@ const producerData =  GetData('/Producer');
 
 
                     />
-                    {errors.startDate && <p>{errors.startDate}</p>}
+                   {/* {errors.startDate && <p>{errors.startDate}</p>}*/}
                 </div>
 
                 <div className='form-inputs'>
@@ -145,19 +158,19 @@ const producerData =  GetData('/Producer');
 
 
                     />
-                    {errors.endDate && <p>{errors.endDate}</p>}
+                    {/*{errors.endDate && <p>{errors.endDate}</p>}*/}
                 </div>
 
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Producer Id</label>
                     <Select name="producerId" options={producerOptions} />
-                    {errors.producerId && <span>{errors.producerId}</span>}
+                   {/* {errors.producerId && <span>{errors.producerId}</span>}*/}
 
                 </div>
                <div className='form-inputs'>
                     <label htmlFor='form-label'>Cinema Id</label>
                     <Select name='cinemaId' options ={cinemaOptions} />
-                   {errors.cinemaId && <span>{errors.cinemaId}</span>}
+                  {/* {errors.cinemaId && <span>{errors.cinemaId}</span>}*/}
 
 
                 </div>

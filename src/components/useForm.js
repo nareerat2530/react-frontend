@@ -1,3 +1,4 @@
+/*
 import {useState} from "react";
 import axios from "axios";
 import Validate from "./Validation";
@@ -9,6 +10,7 @@ import useInput from "./ResetForm";
 const useForm = () => {
 
     const [errors,setErrors] = useState({});
+*/
 
 
 
@@ -28,7 +30,7 @@ const useForm = () => {
 
 
 
-  /* const handleChange =(event) => {
+   /*const handleChange =(event) => {
         const {name,value} = event.target
         setValues({
             ...values, [name] : value
@@ -37,7 +39,7 @@ const useForm = () => {
 
 
 
-    const handleSubmit = async (e) => {
+   /* const handleSubmit = async (e) => {
         e.preventDefault();
 
         const {
@@ -51,11 +53,11 @@ const useForm = () => {
             movieCategory,
             producerId,
             cinemaId
-        } = e.target.elements
+        } = e.target.elements*/
 
 
 
-        axios.post('https://localhost:5001/api/Movies/add', {
+       /* axios.post('https://localhost:5001/api/Movies/add', {
 
             name: name.value,
             description: description.value,
@@ -81,19 +83,20 @@ const useForm = () => {
 
         }, 1000);
 
-       setErrors(Validate)
+      setErrors(Validate)
 
     }
+*/
 
 
 
 
 
-
-    return { handleSubmit, errors ,useInput};
+  /*  return { handleSubmit, errors ,useInput};
     };
 
 
 
 
 export default useForm;
+*/

@@ -2,7 +2,7 @@
 import './App.css';
 import NavBar from "./components/NavBar";
 import Producers from "./components/Producers"
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import Actors from "./components/Actors";
 import Movie from "./components/Movie";
 import Homepage from "./components/Homepage";
@@ -19,7 +19,7 @@ function App() {
     return (
         <div>
 
-        <HashRouter>
+        <BrowserRouter>
                 <NavBar/>
 
                 <Routes>
@@ -35,7 +35,7 @@ function App() {
 
                 </Routes>
 
-        </HashRouter>
+        </BrowserRouter>
 
         </div>
 

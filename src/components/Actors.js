@@ -1,6 +1,6 @@
 
 import ModalCard from "../UI/ModalCard";
-import GetData from "../hooks/getData";
+import GetData from "../Services/getData";
 
 
 const Actors = () => {
