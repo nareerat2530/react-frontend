@@ -13,7 +13,7 @@ const Actors = () => {
         <div className='wrapper'>
                 {data && data.map(actor=> <ModalCard
                     key={actor.id}
-                    header={actor.FullName}
+                    header={actor.fullName}
                     body={actor.bio}
                     imageUrl={actor.imageURL}
                     />)}

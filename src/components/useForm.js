@@ -1,46 +1,96 @@
-
-/*
-import {useState, useEffect} from "react";
-
-
+import {useState} from "react";
+import axios from "axios";
+import Validate from "./Validation";
 
 
 const useForm = () => {
+
+    const [errors,setErrors] = useState({});
+
+
     const [values,setValues] = useState({
         name:'',
         description:'',
         price:'',
         imageUrl:'',
-        actorId:'',
         movieCategory:'',
         startDate:'',
         endDate:'',
         producerId:'',
         cinemaId:'',
-    })
+    });
 
-    const [errors,setErrors] = useState({});
-    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const handleChange =(event) => {
         const {name,value} = event.target
         setValues({
             ...values, [name] : value
         })
     };
-    const handleSubmit = e => {
-        e.preventDefault();
-        setErrors()
-        setIsSubmitting(true)
-    };
-    useEffect(
-        () => {
-            if (Object.keys(errors).length === 0 && isSubmitting) {
 
-            }
-        },
-        [errors]
-    );
-    return {handleChange,values, handleSubmit,errors};
-};
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        e.target.reset()
+
+
+
+
+
+        const {
+
+            name,
+            description,
+            price,
+            imageUrl,
+            startDate,
+            endDate,
+            movieCategory,
+            producerId,
+            cinemaId
+        } = e.target.elements
+
+
+
+        axios.post('https://localhost:5001/api/Movies/add', {
+
+            name: name.value,
+            description: description.value,
+            price: price.value,
+            imageUrl: imageUrl.value,
+            startDate: startDate.value,
+            endDate: endDate.value,
+            movieCategory: movieCategory.value,
+            producerId: parseInt(producerId.value),
+            cinemaId: parseInt(cinemaId.value)
+        })
+
+
+            .then(function (response) {
+                console.log(response);
+            })
+
+
+            .catch(function (error) {
+                console.log(error);
+            });
+        setTimeout(() => {
+
+        }, 1000);
+
+       setErrors(Validate(values))
+
+    }
+
+
+
+
+
+
+    return { handleChange, handleSubmit, values, errors };
+    };
+
+
+
+
 export default useForm;
-*/

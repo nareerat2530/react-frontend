@@ -6,9 +6,10 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import Actors from "./components/Actors";
 import Movie from "./components/Movie";
 import Homepage from "./components/Homepage";
-import AddMovie from "./components/AddMovie"
+/*import AddMovie from "./components/AddMovieForm"*/
 
 import React from "react";
+import AddMovieForm2 from "./components/AddMovieForm";
 
 
 
@@ -26,7 +27,7 @@ function App() {
                     <Route path="/actors" element={<Actors/>}/>
                     <Route path="/producers" element={<Producers/>}/>
                     <Route path="/movies" element={<Movie/>}/>
-                    <Route path="/addmovie" element={<AddMovie/>}/>
+                    <Route path="/addmovie" element={<AddMovieForm2/>}/>
 
 
 

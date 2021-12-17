@@ -7,6 +7,7 @@ const GetData = (props) => {
 
     const [data, setData] = useState();
     const [error,setError] = useState();
+
     useEffect( ()=> {
 
             axios({
@@ -15,6 +16,7 @@ const GetData = (props) => {
             }).then((response)=> {
                 const data = response.data
             setData(data);
+
             }).catch((error) => {
                 if(error.response){
                     console.log(error.response);

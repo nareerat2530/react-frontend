@@ -10,7 +10,7 @@ const Producers = () => {
     <div className='wrapper'>
                {data && data.map(producer=> <ModalCard
                     key={producer.id}
-                    header={producer.FullName}
+                    header={producer.fullName}
                     body={producer.bio}
                     imageUrl={producer.imageURL}
                 />)}
