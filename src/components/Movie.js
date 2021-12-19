@@ -13,19 +13,18 @@ const Movie =  (props) => {
 
     const [data, dataSet] = useState([])
 
-    useEffect(() => {
-        async function fetchMyAPI() {
+    useEffect(async () => {
+
             let response = await MovieService.GetMovies()
 
             dataSet(response)
-        }
-
-        fetchMyAPI()
-    }, [props])
 
 
-  /*    response = MovieService.GetMovies()*/
-        /*setPost(response)*/
+
+    }, [])
+
+
+
 
 
 

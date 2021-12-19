@@ -22,7 +22,7 @@ const AddMovie = (movie) =>{
 }
 
 const GetMovies  = async () => {
-     axios({
+    return axios({
         method: 'GET',
         url:MovieUrl,
     }).then((response)=> {

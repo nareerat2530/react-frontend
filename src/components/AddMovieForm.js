@@ -1,20 +1,35 @@
 import Select from 'react-select'
 import './MovieForm.css'
 import GetData from "../Services/getData";
-import useForm from "./useForm";
-import Validate from "./Validation";
-import React from "react";
-import useInput from "./ResetForm";
 
-import handleSubmit from "../Services/PostData";
+import Validate from "./Validation";
+import React, { useEffect, useState } from "react";
+import useInput from "../hooks/use-input";
 import MovieService from "../Services/movie-service";
+import { useNavigate } from 'react-router-dom';
+import {useForm} from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+
 
 
 
 const  AddMovieForm2 =  () => {
 
 
-  /* const {errors} = useForm(Validate)*/
+
+    const [errors,setErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
+
+
+
+
+
+
+
+
+
 
     const {value: name, bind: bindName, reset: resetName} = useInput('')
     const {value: description, bind: bindDescription, reset: resetDescription} = useInput('')
@@ -35,8 +50,11 @@ const  AddMovieForm2 =  () => {
         resetDescription();
 
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrors(Validate)
+
         let movie =   {name,
             description,
             price,
@@ -45,11 +63,18 @@ const  AddMovieForm2 =  () => {
             endDate
         }
         MovieService.AddMovie(movie);
-        console.log(movie);
+        setIsSubmit(true);
         resetForm();
-
     }
-        const producerOptions = [];
+
+    useEffect(() => {
+    if(Object.keys(errors).length === 0 && isSubmit)
+    {
+
+    }},[errors])
+
+
+    const producerOptions = [];
     const cinemaOptions = [];
 
 
@@ -67,23 +92,26 @@ const getAllData = () => {
 const producerData =  GetData('/Producer');
 
   const isItDone = getAllData()
+    const navigate = useNavigate();
 
 
     return (
 
         <div className='form-content-right'>
-            <form className='form' noValidate onSubmit={handleSubmit }  >
+            <form className='form'  onSubmit={handleSubmit}  >
                 <h2>Add a new movie</h2>
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Name</label>
                     <input
+
                         className='form-input'
                         {...bindName}
                         type='text'
                         name='name'
                         placeholder='Enter Name'
                     />
-                  {/*  {errors.name && <p>{errors.name}</p>}*/}
+                    {errors.name && <p>{errors.name.message}</p>}
+
 
 
 
@@ -91,36 +119,34 @@ const producerData =  GetData('/Producer');
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Description</label>
                     <textarea
+
                         className='form-input'
                         {...bindDescription}
                         type='text'
                         name='description'
                         id="description"
                         placeholder='Enter Description'
-
-
                     />
-                   {/* {errors.description && <p>{errors.description}</p>}*/}
+
+                   {errors.description && <p>{errors.description}</p>}
                 </div>
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Price</label>
                     <input
+
                         className='form-input'
                         {...bindPrice}
                         min ='1'
                         type='number'
                         name='price'
                         placeholder='Enter price'
-
-
-
                     />
-                    {/*{errors.price && <p>{errors.price}</p>}*/}
+                    {errors.price && <p>{errors.price}</p>}
                 </div>
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>ImageUrl</label>
                     <input
-                        className='form-input'
+
                         {...bindImageUrl}
                         type='url'
                         name='imageUrl'
@@ -128,7 +154,7 @@ const producerData =  GetData('/Producer');
 
 
                     />
-                   {/* {errors.imageUrl && <p>{errors.imageUrl}</p>}*/}
+                   {errors.imageUrl && <p>{errors.imageUrl}</p>}
                 </div>
 
 
@@ -141,10 +167,8 @@ const producerData =  GetData('/Producer');
                         type='date'
                         name='startDate'
                         placeholder='Enter Start date'
-
-
                     />
-                   {/* {errors.startDate && <p>{errors.startDate}</p>}*/}
+                   {errors.startDate && <p>{errors.startDate}</p>}
                 </div>
 
                 <div className='form-inputs'>
@@ -155,23 +179,20 @@ const producerData =  GetData('/Producer');
                         type='date'
                         name='endDate'
                         placeholder='Enter End date'
-
-
                     />
-                    {/*{errors.endDate && <p>{errors.endDate}</p>}*/}
+                    {errors.endDate && <p>{errors.endDate}</p>}
                 </div>
 
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Producer Id</label>
                     <Select name="producerId" options={producerOptions} />
-                   {/* {errors.producerId && <span>{errors.producerId}</span>}*/}
+                    {errors.producerId && <span>{errors.producerId}</span>}
 
                 </div>
                <div className='form-inputs'>
                     <label htmlFor='form-label'>Cinema Id</label>
                     <Select name='cinemaId' options ={cinemaOptions} />
-                  {/* {errors.cinemaId && <span>{errors.cinemaId}</span>}*/}
-
+                   {errors.cinemaId && <span>{errors.cinemaId}</span>}
 
                 </div>
 
@@ -186,15 +207,13 @@ const producerData =  GetData('/Producer');
                         <option value="mystery">Mystery</option>
                         <option value="romance">Romance</option>
                         <option value="thriller">Thriller</option>
-
-
                     </select>
                 </div>
 
                 <button className='form-input-btn' type='submit'>
                     Add
                 </button>
-                <button className='form-input-btn' type='cancel'>
+                <button className='form-input-btn' type='cancel' onClick={() =>navigate('/movies')}>
                 Cancel
                 </button>
             </form >
