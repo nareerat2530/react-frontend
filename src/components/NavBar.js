@@ -25,10 +25,8 @@ const NavBar = () => {
     useEffect(() => {
         showButton();
         window.addEventListener('resize', showButton);
-       return
-        {
-       window.removeEventListener('resize',showButton)
-       }
+       return window.removeEventListener('resize',showButton)
+
     },[]);
 
     return (

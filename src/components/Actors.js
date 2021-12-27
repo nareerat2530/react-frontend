@@ -1,12 +1,25 @@
 
 import ModalCard from "../UI/ModalCard";
-import GetData from "../Services/getData";
+
+import { useEffect, useState } from "react";
+
+import ActorService from "../Services/actors-service";
 
 
 const Actors = () => {
 
 
-    const data =  GetData('/Actors')
+    const [data, dataSet] = useState([])
+
+    useEffect(
+        () => {
+            async function GetActors(){
+                let response = await ActorService.GetActors()
+                dataSet(response)
+            }
+
+            GetActors();
+    }, [])
 
     return(
 
@@ -16,6 +29,8 @@ const Actors = () => {
                     header={actor.fullName}
                     body={actor.bio}
                     imageUrl={actor.imageURL}
+
+
                     />)}
         </div>
 

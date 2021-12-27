@@ -1,36 +1,22 @@
 
 import ModalCard from "../UI/ModalCard";
-import GetData from "../Services/getData";
 import MovieService from "../Services/movie-service";
 import { useEffect, useState } from "react";
-import { set } from "mobx";
-/*
-import DeleteData from "../hooks/DeleteData";
-*/
 
-const Movie =  (props) => {
+
+const Movie =  () => {
 
 
     const [data, dataSet] = useState([])
 
-    useEffect(async () => {
-
-            let response = await MovieService.GetMovies()
-
-            dataSet(response)
-
-
+    useEffect( () => {
+        async function  GetMovie(){
+    let response = await MovieService.GetMovies()
+    dataSet(response)
+}
+        GetMovie()
 
     }, [])
-
-
-
-
-
-
-
-
-
 
     return(
 
@@ -40,7 +26,8 @@ const Movie =  (props) => {
             header={movie.name}
             body={movie.description}
             imageUrl={movie.imageUrl}
-            footer={movie.price}/>)}
+           footer={movie.price}
+            />)}
 
         </div>
     )

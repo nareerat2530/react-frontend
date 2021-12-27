@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ModalCard from "../UI/ModalCard";
-import GetData from "../Services/getData";
+import ProducerService from "../Services/producer-service";
 
 
 const Producers = () => {
-    const data =  GetData('/Producer')
+    const [data, dataSet] = useState([])
+
+    useEffect( () => {
+        async function GetProducers() {
+            let response = await ProducerService.GetProducers()
+            dataSet(response)
+        }
+        GetProducers();
+
+    }, [])
 
     return(
     <div className='wrapper'>

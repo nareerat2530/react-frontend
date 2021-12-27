@@ -1,35 +1,21 @@
 import Select from 'react-select'
 import './MovieForm.css'
-import GetData from "../Services/getData";
-
 import Validate from "./Validation";
 import React, { useEffect, useState } from "react";
 import useInput from "../hooks/use-input";
 import MovieService from "../Services/movie-service";
 import { useNavigate } from 'react-router-dom';
-import {useForm} from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import CinemaService from "../Services/cinema-service";
+import ProducerService from "../Services/producer-service"
 
 
 
-
-
-const  AddMovieForm2 =  () => {
-
-
+const  AddMovieForm =  () => {
 
     const [errors,setErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-
-
-
-
-
-
-
-
-
+    const [producers, setProducers] = useState([]);
+    const [cinemas, setCinemas] = useState([]);
 
     const {value: name, bind: bindName, reset: resetName} = useInput('')
     const {value: description, bind: bindDescription, reset: resetDescription} = useInput('')
@@ -41,6 +27,17 @@ const  AddMovieForm2 =  () => {
 
 
 
+    useEffect( () => {
+        async function GetDataOptions() {
+            let producerResponse = await ProducerService.GetProducers()
+            setProducers(producerResponse);
+            let cinemaResponse = await CinemaService.GetCinema()
+            setCinemas(cinemaResponse);
+
+        }
+        GetDataOptions();
+    }, [])
+
     const resetForm = () => {
         resetName();
         resetPrice();
@@ -50,7 +47,6 @@ const  AddMovieForm2 =  () => {
         resetDescription();
 
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors(Validate)
@@ -71,27 +67,23 @@ const  AddMovieForm2 =  () => {
     if(Object.keys(errors).length === 0 && isSubmit)
     {
 
-    }},[errors])
+    }},[errors,isSubmit])
 
 
     const producerOptions = [];
     const cinemaOptions = [];
 
 
-const getAllData = () => {
-    if (producerData !== undefined){
-        producerData.forEach(producer => producerOptions.push({value: producer.id, label: producer.fullName}));
-    }
-    const cinemaData =  GetData('/Cinema');
-    if(cinemaData !== undefined){
-        cinemaData.forEach(Cinema => cinemaOptions.push({value: Cinema.id, label: Cinema.name}));
-    }
 
-    return "done";
-}
-const producerData =  GetData('/Producer');
 
-  const isItDone = getAllData()
+        producers.forEach(producer => producerOptions.push({value: producer.id, label: producer.fullName}));
+        cinemas.forEach(Cinema => cinemaOptions.push({value: Cinema.id, label: Cinema.name}));
+
+
+
+
+
+
     const navigate = useNavigate();
 
 
@@ -103,7 +95,6 @@ const producerData =  GetData('/Producer');
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Name</label>
                     <input
-
                         className='form-input'
                         {...bindName}
                         type='text'
@@ -111,10 +102,6 @@ const producerData =  GetData('/Producer');
                         placeholder='Enter Name'
                     />
                     {errors.name && <p>{errors.name.message}</p>}
-
-
-
-
                 </div>
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Description</label>
@@ -133,7 +120,6 @@ const producerData =  GetData('/Producer');
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Price</label>
                     <input
-
                         className='form-input'
                         {...bindPrice}
                         min ='1'
@@ -146,19 +132,13 @@ const producerData =  GetData('/Producer');
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>ImageUrl</label>
                     <input
-
                         {...bindImageUrl}
                         type='url'
                         name='imageUrl'
                         placeholder='Enter Image url'
-
-
                     />
                    {errors.imageUrl && <p>{errors.imageUrl}</p>}
                 </div>
-
-
-
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>Start Date</label>
                     <input
@@ -170,7 +150,6 @@ const producerData =  GetData('/Producer');
                     />
                    {errors.startDate && <p>{errors.startDate}</p>}
                 </div>
-
                 <div className='form-inputs'>
                     <label htmlFor='form-label'>End Date</label>
                     <input
@@ -187,15 +166,12 @@ const producerData =  GetData('/Producer');
                     <label htmlFor='form-label'>Producer Id</label>
                     <Select name="producerId" options={producerOptions} />
                     {errors.producerId && <span>{errors.producerId}</span>}
-
                 </div>
                <div className='form-inputs'>
                     <label htmlFor='form-label'>Cinema Id</label>
                     <Select name='cinemaId' options ={cinemaOptions} />
                    {errors.cinemaId && <span>{errors.cinemaId}</span>}
-
-                </div>
-
+               </div>
                 <div className='form-inputs'>
                     <label htmlFor='form-label' >Movie Category</label>
                     <select name='movieCategory'  >
@@ -225,6 +201,6 @@ const producerData =  GetData('/Producer');
 
 };
 
-export default AddMovieForm2;
+export default AddMovieForm;
 
 

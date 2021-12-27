@@ -1,9 +1,9 @@
-import React from "react";
 import axios from "axios";
 
 
 
 const MovieUrl = "/movies"
+
 
 const AddMovie = (movie) =>{
 
@@ -32,9 +32,7 @@ const GetMovies  = async () => {
     }).catch((error) => {
         if(error.response){
             return error.message
-             console.log(error.response);
-             console.log(error.response.headers);
-             console.log(error.response.status);
+
         }
 
     });
