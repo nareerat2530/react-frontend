@@ -9,6 +9,7 @@
     font-size: 16px;
     padding: 90px;
 }
+
 .btn btn-primary {
 
     background-color: #4CAF50; /* Green */
@@ -21,7 +22,8 @@
     font-size: 16px;
     padding: 90px;
 }
-.btn-rounded{
+
+.btn-rounded {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -31,4 +33,5 @@
     display: inline-block;
     font-size: 16px;
 }
+
 .btn-outline

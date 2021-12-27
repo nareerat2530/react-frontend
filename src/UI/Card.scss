@@ -1,85 +1,92 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,300&display=swap');
 
-*,*::before,
-*::after{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*, *::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-body{
-    font-family: Bittter, sans-serif;
-    background: #242222;
-}
-.wrapper{
 
-    display: grid;
-    grid-template-columns: 1fr ;
-    gap:10rem;
-    justify-content: center;
-    margin: 0rem;
+body {
+  font-family: Bittter, sans-serif;
+  background: #242222;
 }
+
+.wrapper {
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10rem;
+  justify-content: center;
+  margin: 0rem;
+}
+
 .card {
-    box-shadow: 0 0 10px 5px gray;
-    border-radius: 0.2rem;
-    min-width: 16rem;
+  box-shadow: 0 0 10px 5px gray;
+  border-radius: 0.2rem;
+  min-width: 16rem;
 
-    display: flex;
-    background-color: grey;
-    margin-top: -5rem;
+  display: flex;
+  background-color: grey;
+  margin-top: -5rem;
   margin-bottom: 5rem;
 
 
-&__image {
-     width: 18rem;
-     height: 20rem;
-     object-fit: cover;
- }
+  &__image {
+    width: 18rem;
+    height: 20rem;
+    object-fit: cover;
+  }
 
-&__body {
-     margin:25rem;
-     flex-grow: 1;
- }
-&__title {
-     line-height: 1.4rem;
-     margin-top :1.5rem;
-      text-align: center;
+  &__body {
+    margin: 25rem;
+    flex-grow: 1;
+  }
+
+  &__title {
+    line-height: 1.4rem;
+    margin-top: 1.5rem;
+    text-align: center;
     front-size: 50px;
 
- }
-&__description {
-     line-height: 1.2rem;
- }
-&__price {
-     font-size: 1.4rem;
-     margin-top: 0.6rem;
+  }
 
-&::before {
-     content: "$";
-     font-size: 1rem;
-     position: relative;
-     top: -0.3rem;
-     padding-right: 0.1rem;
- }
+  &__description {
+    line-height: 1.2rem;
+  }
+
+  &__price {
+    font-size: 1.4rem;
+    margin-top: 0.6rem;
+
+    &::before {
+      content: "$";
+      font-size: 1rem;
+      position: relative;
+      top: -0.3rem;
+      padding-right: 0.1rem;
+    }
+  }
+
+  &__btn {
+    border: none;
+    border-top: 1px solid gray;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    color: inherit;
+    width: 100%;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      color: indianred;
+    }
+  }
 }
 
-&__btn {
-     border: none;
-     border-top: 1px solid gray;
-     background-color: transparent;
-     font-family: inherit;
-     font-size: 1rem;
-     font-weight: bold;
-     color: inherit;
-     width: 100%;
-     padding-top: 1rem;
-     margin-top: 1rem;
-     cursor: pointer;
-
-&:hover {
-     color: indianred;
- }
-}
-}
 @media screen and (min-width: 600px) {
   .wrapper {
     margin-top: 20rem;
