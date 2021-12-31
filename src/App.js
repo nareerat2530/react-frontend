@@ -1,5 +1,5 @@
 import "./App.css";
-import NavBar from "./components/NavBar";
+
 import Producers from "./components/Producers";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Actors from "./components/Actors";
@@ -10,14 +10,14 @@ import AddMovieForm from "./components/AddMovieForm";
 import SignUp from "./components/sign-up";
 
 import AddProducerForm from "./components/AddProducerForm";
-import Narbar1 from "./components/Narbar1";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
        {/* <NavBar />*/}
-      <Narbar1/>
+      <Navbar/>
 
         <Routes>
           <Route path="/" element={<Homepage />} exact />

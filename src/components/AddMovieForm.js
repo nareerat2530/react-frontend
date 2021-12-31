@@ -9,7 +9,6 @@ import CinemaService from "../Services/cinema-service";
 import ProducerService from "../Services/producer-service";
 
 const AddMovieForm = () => {
-
   const [producers, setProducers] = useState([]);
   const [cinemas, setCinemas] = useState([]);
 
@@ -67,11 +66,9 @@ const AddMovieForm = () => {
       endDate,
     };
     MovieService.AddMovie(movie);
-    alert("Submitted Successfully")
+    alert("Submitted Successfully");
     resetForm();
   };
-
-
 
   const producerOptions = [];
   const cinemaOptions = [];
@@ -150,12 +147,10 @@ const AddMovieForm = () => {
         <div className="form-inputs">
           <label htmlFor="form-label">Producer Id</label>
           <Select name="producerId" options={producerOptions} />
-
         </div>
         <div className="form-inputs">
           <label htmlFor="form-label">Cinema Id</label>
           <Select name="cinemaId" options={cinemaOptions} />
-
         </div>
         <div className="form-inputs">
           <label htmlFor="form-label">Image Url</label>
