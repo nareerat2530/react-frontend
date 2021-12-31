@@ -1,6 +1,5 @@
 import Select from "react-select";
 import "./MovieForm.css";
-
 import React, { useEffect, useState } from "react";
 import useInput from "../hooks/use-input";
 import MovieService from "../Services/movie-service";
