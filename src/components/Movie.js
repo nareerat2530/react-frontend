@@ -1,6 +1,6 @@
-import ModalCard from "../UI/ModalCard";
 import MovieService from "../Services/movie-service";
 import { useEffect, useState } from "react";
+import MoVieCard from "../UI/MovieCard";
 
 const Movie = () => {
   const [data, dataSet] = useState([]);
@@ -18,7 +18,7 @@ const Movie = () => {
     <div className="wrapper">
       {data &&
         data.map((movie) => (
-          <ModalCard
+          <MoVieCard
             key={movie.id}
             header={movie.name}
             body={movie.description}

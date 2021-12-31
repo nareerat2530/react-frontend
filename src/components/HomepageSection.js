@@ -6,7 +6,7 @@ import "../App.css";
 const HeroSection = () => {
   return (
     <div className="hero-container">
-        <h1>Welcome to Movie World</h1>
+      <h1>Welcome to Movie World</h1>
       <div className="hero-btns">
         <Button
           className="btns"
