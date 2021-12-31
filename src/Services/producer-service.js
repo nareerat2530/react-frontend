@@ -16,9 +16,21 @@ const GetProducers = async () => {
       }
     });
 };
+const AddProducer = (producer) => {
+  axios
+      .post("https://localhost:5001/api/Producer/add", producer)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  setTimeout(() => {}, 1000);
+};
 
 const ProducerService = {
   GetProducers,
+  AddProducer,
 };
 export default ProducerService;
 

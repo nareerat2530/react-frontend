@@ -1,16 +1,36 @@
+/*
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import { Button } from "../UI/Button";
+import Dropdown from "./Dropdown";
 
 const NavBar = () => {
   const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
+  const [dropdown, setDropdown] = useState(false);
+ const [button, setButton] = useState(true);
+
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const showButton = () => {
+  const onMouseEnter = () => {
+    if (window.innerWidth < 960) {
+      setDropdown(false);
+    } else {
+      setDropdown(true);
+    }
+  };
+
+  const onMouseLeave = () => {
+    if (window.innerWidth <= 960) {
+      setDropdown(false);
+    } else {
+      setDropdown(false);
+    }
+  };
+
+ const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
     } else {
@@ -31,7 +51,7 @@ const NavBar = () => {
           <Link
             to="/"
             className="navbar-logo"
-            id={"movies"}
+            /!*id={"movies"}*!/
             onClick={closeMobileMenu}
           >
             Movie & PopCorn<i className="fas fa-video"></i>
@@ -40,15 +60,22 @@ const NavBar = () => {
             <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
+            <li className="nav-item"
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+            >
               <Link
+
                 to="/movies"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Movies
+                Movies <i className='fas fa-caret-down' />
               </Link>
+              {dropdown && <Dropdown />}
             </li>
+
+
 
             <li className="nav-item">
               <Link
@@ -72,16 +99,26 @@ const NavBar = () => {
             </li>
             <li className="nav-item">
               <Link
-                to="/sign-up"
-                className="nav-links-mobile"
-                id={"sign-up"}
+                to="/add-movie"
+                className="nav-links"
+
                 onClick={closeMobileMenu}
               >
-                Sign Up
+                Add Movie
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                  to="/add-producer"
+                  className="nav-links"
+
+                  onClick={closeMobileMenu}
+              >
+                Add Producer
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">Add Movie</Button>}
+          {button && <Button buttonStyle="btn--outline">Sign Up</Button>}
         </div>
       </nav>
     </>
@@ -90,3 +127,4 @@ const NavBar = () => {
 
 
 export default NavBar;
+*/

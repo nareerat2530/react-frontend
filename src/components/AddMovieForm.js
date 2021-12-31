@@ -1,6 +1,6 @@
 import Select from "react-select";
 import "./MovieForm.css";
-import Validate from "./Validation";
+
 import React, { useEffect, useState } from "react";
 import useInput from "../hooks/use-input";
 import MovieService from "../Services/movie-service";
@@ -9,8 +9,7 @@ import CinemaService from "../Services/cinema-service";
 import ProducerService from "../Services/producer-service";
 
 const AddMovieForm = () => {
-  const [errors, setErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+
   const [producers, setProducers] = useState([]);
   const [cinemas, setCinemas] = useState([]);
 
@@ -58,7 +57,6 @@ const AddMovieForm = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors(Validate);
 
     let movie = {
       name,
@@ -69,14 +67,11 @@ const AddMovieForm = () => {
       endDate,
     };
     MovieService.AddMovie(movie);
-    setIsSubmit(true);
+    alert("Submitted Successfully")
     resetForm();
   };
 
-  useEffect(() => {
-    if (Object.keys(errors).length === 0 && isSubmit) {
-    }
-  }, [errors, isSubmit]);
+
 
   const producerOptions = [];
   const cinemaOptions = [];
@@ -102,8 +97,8 @@ const AddMovieForm = () => {
             type="text"
             name="name"
             placeholder="Enter Name"
+            required={true}
           />
-          {errors.name && <p>{errors.name.message}</p>}
         </div>
         <div className="form-inputs">
           <label htmlFor="form-label">Description</label>
@@ -113,9 +108,8 @@ const AddMovieForm = () => {
             name="description"
             id="description"
             placeholder="Enter Description"
+            required={true}
           />
-
-          {errors.description && <p>{errors.description}</p>}
         </div>
         <div className="form-inputs">
           <label htmlFor="form-label">Price</label>
@@ -126,19 +120,10 @@ const AddMovieForm = () => {
             type="number"
             name="price"
             placeholder="Enter price"
+            required={true}
           />
-          {errors.price && <p>{errors.price}</p>}
         </div>
-        <div className="form-inputs">
-          <label htmlFor="form-label">ImageUrl</label>
-          <input
-            {...bindImageUrl}
-            type="url"
-            name="imageUrl"
-            placeholder="Enter Image url"
-          />
-          {errors.imageUrl && <p>{errors.imageUrl}</p>}
-        </div>
+
         <div className="form-inputs">
           <label htmlFor="form-label">Start Date</label>
           <input
@@ -147,8 +132,8 @@ const AddMovieForm = () => {
             type="date"
             name="startDate"
             placeholder="Enter Start date"
+            required={true}
           />
-          {errors.startDate && <p>{errors.startDate}</p>}
         </div>
         <div className="form-inputs">
           <label htmlFor="form-label">End Date</label>
@@ -158,19 +143,30 @@ const AddMovieForm = () => {
             type="date"
             name="endDate"
             placeholder="Enter End date"
+            required={true}
           />
-          {errors.endDate && <p>{errors.endDate}</p>}
         </div>
 
         <div className="form-inputs">
           <label htmlFor="form-label">Producer Id</label>
           <Select name="producerId" options={producerOptions} />
-          {errors.producerId && <span>{errors.producerId}</span>}
+
         </div>
         <div className="form-inputs">
           <label htmlFor="form-label">Cinema Id</label>
           <Select name="cinemaId" options={cinemaOptions} />
-          {errors.cinemaId && <span>{errors.cinemaId}</span>}
+
+        </div>
+        <div className="form-inputs">
+          <label htmlFor="form-label">Image Url</label>
+          <input
+            className="form-input"
+            {...bindImageUrl}
+            type="text"
+            name="imageUrl"
+            placeholder="Enter Image Url"
+            required={true}
+          />
         </div>
         <div className="form-inputs">
           <label htmlFor="form-label">Movie Category</label>
@@ -202,5 +198,3 @@ const AddMovieForm = () => {
 };
 
 export default AddMovieForm;
-
-

@@ -1,12 +1,15 @@
 const Validate = (values) => {
   let errors = {};
+
   if (!values.name) {
     errors.name = "Required";
+
   } else if (values.name.length > 15) {
     errors.firstName = "Must be 15 characters or less";
   }
 
   if (!values.description) {
+
     errors.description = "Description is Required";
   }
 
@@ -31,6 +34,14 @@ const Validate = (values) => {
   if (!values.cinemaId) {
     errors.cinemaId = "Required";
   }
+  if(!values.bio) {
+    errors.bio = "Bio is Required";
+  }
+  if(!values.fullName){
+    errors.fullName = "Full name is Required"
+  }
+
+
 
   return errors;
 };

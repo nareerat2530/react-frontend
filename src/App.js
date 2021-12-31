@@ -7,19 +7,27 @@ import Movie from "./components/Movie";
 import Homepage from "./components/Homepage";
 import React from "react";
 import AddMovieForm from "./components/AddMovieForm";
+import SignUp from "./components/sign-up";
+
+import AddProducerForm from "./components/AddProducerForm";
+import Narbar1 from "./components/Narbar1";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <NavBar />
+       {/* <NavBar />*/}
+      <Narbar1/>
 
         <Routes>
           <Route path="/" element={<Homepage />} exact />
           <Route path="/actors" element={<Actors />} />
           <Route path="/producers" element={<Producers />} />
           <Route path="/movies" element={<Movie />} />
-          <Route path="/addmovie" element={<AddMovieForm />} />
+          <Route path="/add-movie" element={<AddMovieForm />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/add-producer" element={<AddProducerForm/>} />
+
         </Routes>
       </BrowserRouter>
     </div>
